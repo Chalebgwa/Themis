@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_calendar/flutter_clean_calendar.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:simon/controllers/appointment_provider.dart';
 import 'package:simon/models/appointment.dart';
@@ -80,7 +80,7 @@ class _AdminCalendarState extends State<AdminCalendar> {
                     onDateSelected: (date) => _handleNewDate(date),
                     isExpandable: true,
                     eventDoneColor: Colors.green,
-                    selectedColor: Theme.of(context).accentColor,
+                    selectedColor: Theme.of(context).colorScheme.secondary,
                     todayColor: Colors.yellow,
                     eventColor: Colors.grey,
                     bottomBarColor: Colors.grey.shade200,

@@ -115,7 +115,7 @@ class _SignInState extends State<SignIn> {
         children: [
           RaisedButton(
             elevation: 100,
-            color: Theme.of(context).accentColor,
+            color: Theme.of(context).colorScheme.secondary,
             onPressed: () {
               auth.signIn("email", "",isAdmin: false);
             },

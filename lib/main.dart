@@ -72,14 +72,26 @@ class _RootState extends State<Root> {
         return LandingPage();
       case AuthState.LOADING:
         return Scaffold(
-          body: SpinKitFadingCircle(
-            itemBuilder: (BuildContext context, int index) {
-              return DecoratedBox(
-                decoration: BoxDecoration(
-                  color: index.isEven ? Colors.red : Colors.green,
+          backgroundColor: Colors.white,
+          body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SpinKitFadingCircle(
+                  color: Theme.of(context).colorScheme.secondary,
+                  size: 60.0,
                 ),
-              );
-            },
+                SizedBox(height: 20),
+                Text(
+                  'Loading...',
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.secondary,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
           ),
         );
       default:

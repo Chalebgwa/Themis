@@ -22,7 +22,7 @@ class _SlotItemState extends State<SlotItem> {
 
   @override
   Widget build(BuildContext context) {
-    final accentColor = Theme.of(context).accentColor;
+    final accentColor = Theme.of(context).colorScheme.secondary;
 
     return Padding(
       padding: const EdgeInsets.all(8.0),

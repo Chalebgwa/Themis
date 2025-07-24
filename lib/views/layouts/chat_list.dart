@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ChatList extends StatelessWidget {
   const ChatList({Key key}) : super(key: key);
@@ -17,7 +17,7 @@ class ChatList extends StatelessWidget {
                 hintText: "Search",
                 suffix: IconButton(
                   color: Colors.red,
-                  icon: Icon(FlutterIcons.search1_ant),
+                  icon: Icon(FontAwesomeIcons.search),
                   onPressed: () {},
                 ),
               ),

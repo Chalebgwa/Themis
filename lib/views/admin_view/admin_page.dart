@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:provider/provider.dart';
@@ -55,7 +55,7 @@ class _AdminHomeState extends State<AdminHome> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(3),
                 side: BorderSide(
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).colorScheme.secondary,
                 ),
               ),
               child: Container(
@@ -79,19 +79,19 @@ class _AdminHomeState extends State<AdminHome> {
                         ButtonBar(
                           children: [
                             IconButton(
-                              icon: Icon(FlutterIcons.addfile_ant),
+                              icon: Icon(FontAwesomeIcons.filePlus),
                               onPressed: () {},
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).colorScheme.secondary,
                             ),
                             IconButton(
-                              icon: Icon(FlutterIcons.addfile_ant),
+                              icon: Icon(FontAwesomeIcons.filePlus),
                               onPressed: () {},
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).colorScheme.secondary,
                             ),
                             IconButton(
-                              icon: Icon(FlutterIcons.addfile_ant),
+                              icon: Icon(FontAwesomeIcons.filePlus),
                               onPressed: () {},
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).colorScheme.secondary,
                             ),
                           ],
                         )
@@ -160,7 +160,7 @@ class _AdminHomeState extends State<AdminHome> {
                   topRight: Radius.circular(30),
                 ),
                 side: BorderSide(
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).colorScheme.secondary,
                 ),
               ),
               child: InkWell(
@@ -185,7 +185,7 @@ class _AdminHomeState extends State<AdminHome> {
                           child: Material(
                             color: Colors.transparent,
                             child: CircularPercentIndicator(
-                              progressColor: Theme.of(context).accentColor,
+                              progressColor: Theme.of(context).colorScheme.secondary,
                               animation: true,
                               percent: .5,
                               startAngle: 0.0,
@@ -222,17 +222,17 @@ class _AdminHomeState extends State<AdminHome> {
                               alignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 IconButton(
-                                    icon: Icon(FlutterIcons.API_ant),
+                                    icon: Icon(FontAwesomeIcons.api),
                                     onPressed: () {},
-                                    color: Theme.of(context).accentColor),
+                                    color: Theme.of(context).colorScheme.secondary),
                                 IconButton(
-                                    icon: Icon(FlutterIcons.phone_ant),
+                                    icon: Icon(FontAwesomeIcons.phone),
                                     onPressed: () {},
-                                    color: Theme.of(context).accentColor),
+                                    color: Theme.of(context).colorScheme.secondary),
                                 IconButton(
-                                    icon: Icon(FlutterIcons.info_ant),
+                                    icon: Icon(FontAwesomeIcons.info),
                                     onPressed: () {},
-                                    color: Theme.of(context).accentColor),
+                                    color: Theme.of(context).colorScheme.secondary),
                               ],
                             ),
                           ],
@@ -276,7 +276,7 @@ class _AdminHomeState extends State<AdminHome> {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(2),
         side: BorderSide(
-          color: Theme.of(context).accentColor,
+          color: Theme.of(context).colorScheme.secondary,
         ),
       ),
       child: InkWell(

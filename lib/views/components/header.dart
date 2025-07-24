@@ -22,7 +22,7 @@ class HeaderText extends StatelessWidget {
               text: "LAW",
               style: TextStyle(
                 fontSize: 30,
-                color: Theme.of(context).accentColor,
+                color: Theme.of(context).colorScheme.secondary,
                 fontWeight: FontWeight.w300,
               ),
             ),

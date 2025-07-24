@@ -59,7 +59,7 @@ class _BookingFormState extends State<BookingForm> {
     final timeStyle = TextStyle(color: Colors.black, fontSize: 30);
 
     //
-    final accentColor = Theme.of(context).accentColor;
+    final accentColor = Theme.of(context).colorScheme.secondary;
 
     return SafeArea(
       child: Scaffold(
