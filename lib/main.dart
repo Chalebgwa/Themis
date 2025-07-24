@@ -38,6 +38,21 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Simon Law',
         home: Root(),
+        // Performance optimizations
+        builder: (context, child) {
+          return MediaQuery(
+            // Prevent font scaling to avoid layout issues
+            data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+            child: child!,
+          );
+        },
+        // Add smooth page transitions globally
+        pageTransitionsTheme: const PageTransitionsTheme(
+          builders: {
+            TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+            TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+          },
+        ),
       ),
     );
   }
@@ -51,51 +66,55 @@ class Root extends StatefulWidget {
 }
 
 class _RootState extends State<Root> {
-  Auth auth;
+  Auth? auth;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    auth = Provider.of<Auth>(context);
+    auth = Provider.of<Auth>(context, listen: false);
   }
 
   @override
   Widget build(BuildContext context) {
-    switch (auth.state) {
-      case AuthState.SIGNEDOUT:
-        return SignIn();
-      case AuthState.SIGNEDIN:
-        if (auth.currentUser.isAdmin) {
-          return AdminView();
+    return Consumer<Auth>(
+      builder: (context, auth, child) {
+        switch (auth.state) {
+          case AuthState.SIGNEDOUT:
+            return SignIn();
+          case AuthState.SIGNEDIN:
+            final user = auth.currentUser;
+            if (user != null && user.isAdmin) {
+              return AdminView();
+            }
+            return LandingPage();
+          case AuthState.LOADING:
+            return Scaffold(
+              backgroundColor: Colors.white,
+              body: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SpinKitFadingCircle(
+                      color: Theme.of(context).colorScheme.secondary,
+                      size: 60.0,
+                    ),
+                    SizedBox(height: 20),
+                    Text(
+                      'Loading...',
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.secondary,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          default:
+            return Container();
         }
-
-        return LandingPage();
-      case AuthState.LOADING:
-        return Scaffold(
-          backgroundColor: Colors.white,
-          body: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SpinKitFadingCircle(
-                  color: Theme.of(context).colorScheme.secondary,
-                  size: 60.0,
-                ),
-                SizedBox(height: 20),
-                Text(
-                  'Loading...',
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.secondary,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        );
-      default:
-        return Container();
-    }
+      },
+    );
   }
 }
