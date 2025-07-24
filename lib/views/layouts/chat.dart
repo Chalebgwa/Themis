@@ -126,7 +126,7 @@ class _BubbleState extends State<Bubble> with SingleTickerProviderStateMixin {
             widget.isLeft ? MainAxisAlignment.start : MainAxisAlignment.end,
         children: [
           Card(
-            color: widget.isLeft ? Theme.of(context).accentColor : Colors.white,
+            color: widget.isLeft ? Theme.of(context).colorScheme.secondary : Colors.white,
             child: Container(
               margin: EdgeInsets.all(7),
               constraints: BoxConstraints(

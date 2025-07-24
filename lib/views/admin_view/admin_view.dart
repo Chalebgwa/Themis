@@ -1,7 +1,7 @@
 import 'package:circle_bottom_navigation/widgets/tab_data.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:simon/views/admin_view/admin_quick_add.dart';
 import 'package:circle_bottom_navigation/circle_bottom_navigation.dart';
 import 'package:simon/views/admin_view/admin_page.dart';
@@ -80,7 +80,7 @@ class _AdminViewState extends State<AdminView> {
             //   circleSize: 60,
             //   initialSelection: currentPage,
             //   inactiveIconColor: Colors.white,
-            //   activeIconColor: Theme.of(context).accentColor,
+            //   activeIconColor: Theme.of(context).colorScheme.secondary,
             //   barBackgroundColor: Colors.black,
             //   textColor: Colors.white,
             //   circleColor: Colors.black,
@@ -88,21 +88,21 @@ class _AdminViewState extends State<AdminView> {
 
             //   tabs: [
             //     TabData(
-            //       icon: FlutterIcons.home_ant,
+            //       icon: FontAwesomeIcons.home,
             //       iconSize: 35,
             //       title: 'Home',
             //       fontSize: 15,
             //       fontWeight: FontWeight.bold,
             //     ),
             //     TabData(
-            //       icon: FlutterIcons.calendar_ant,
+            //       icon: FontAwesomeIcons.calendar,
             //       iconSize: 35,
             //       title: 'Calendar',
             //       fontSize: 15,
             //       fontWeight: FontWeight.bold,
             //     ),
             //     TabData(
-            //       icon: FlutterIcons.file_document_mco,
+            //       icon: FontAwesomeIcons.fileAlt,
             //       iconSize: 35,
             //       title: 'Cases',
             //       fontSize: 15,

@@ -8,24 +8,35 @@ class Auth extends ChangeNotifier {
   AuthState get state => _state;
 
   // signed in user
-  User _currentUser;
-  User get currentUser => _currentUser;
+  User? _currentUser;
+  User? get currentUser => _currentUser;
 
-  Future<void> signIn(String email, String password,{isAdmin=true}) async {
-    _state = AuthState.SIGNEDIN;
+  Future<void> signIn(String email, String password, {bool isAdmin = true}) async {
+    try {
+      _state = AuthState.LOADING;
+      notifyListeners();
 
-    _currentUser = User(
-      "Test",
-      "Tester",
-      "email@provider.com",
-      "77147912",
-      "assets/2.png",
-      DateTime(1996),
-      "445",
-      true,
-      isAdmin: isAdmin
-    );
+      // Simulate network delay for better UX
+      await Future.delayed(Duration(milliseconds: 500));
 
-    notifyListeners();
+      _state = AuthState.SIGNEDIN;
+      _currentUser = User(
+        "Test",
+        "Tester",
+        "email@provider.com",
+        "77147912",
+        "assets/2.png",
+        DateTime(1996),
+        "445",
+        true,
+        isAdmin: isAdmin
+      );
+
+      notifyListeners();
+    } catch (e) {
+      _state = AuthState.SIGNEDOUT;
+      notifyListeners();
+      rethrow;
+    }
   }
 }

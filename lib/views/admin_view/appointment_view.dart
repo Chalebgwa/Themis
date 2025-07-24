@@ -77,7 +77,7 @@ class ViewAppointment extends StatelessWidget {
                                   color: Colors.transparent,
                                   child: CircularPercentIndicator(
                                     progressColor:
-                                        Theme.of(context).accentColor,
+                                        Theme.of(context).colorScheme.secondary,
                                     animation: true,
                                     percent: value(duration),
                                     startAngle: 0.0,

@@ -21,13 +21,13 @@ class LandingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final user = Provider.of<Auth>(context).currentUser;
+    final user = Provider.of<Auth>(context, listen: false).currentUser;
+    
     return BackgroundPage(
       opacity: .4,
-      //fab: FloatingActionButton(onPressed: (){}),
       child: CustomScrollView(
         dragStartBehavior: DragStartBehavior.start,
-        shrinkWrap: true,
+        physics: const BouncingScrollPhysics(),
         slivers: [
           SliverPadding(
             sliver: SliverList(
@@ -41,9 +41,16 @@ class LandingPage extends StatelessWidget {
             ),
             padding: EdgeInsets.only(top: size.height/20),
           ),
-          SliverGrid.count(
-            crossAxisCount: 3,
-            children: [
+          SliverPadding(
+            padding: EdgeInsets.symmetric(horizontal: 16.0),
+            sliver: SliverGrid(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: _getCrossAxisCount(size.width),
+                crossAxisSpacing: 8.0,
+                mainAxisSpacing: 8.0,
+                childAspectRatio: 1.0,
+              ),
+              delegate: SliverChildListDelegate([
               FGridTile(
                 iconData: FontAwesomeIcons.pooStorm,
                 label: "Our People",
@@ -70,7 +77,7 @@ class LandingPage extends StatelessWidget {
                 iconData: FontAwesomeIcons.robot,
                 label: "Chat",
                 color: Colors.pinkAccent,
-                page: Inbox(currentUserId: user.id,),
+                page: Inbox(currentUserId: user?.id ?? 'default'),
               ),
               FGridTile(
                 iconData: FontAwesomeIcons.calendarDay,
@@ -84,17 +91,24 @@ class LandingPage extends StatelessWidget {
                 color: Colors.teal,
                 page: ServicesList(),
               ),
-            ],
+              ]),
+            ),
           ),
         ],
       ),
     );
   }
+
+  int _getCrossAxisCount(double width) {
+    if (width > 800) return 4;
+    if (width > 600) return 3;
+    return 2;
+  }
 }
 
 class Title extends StatelessWidget {
   const Title({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -104,9 +118,11 @@ class Title extends StatelessWidget {
       child: Text(
         "What do you need?",
         style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontFeatures: [FontFeature.randomize()],
-            fontSize: 20),
+          fontWeight: FontWeight.bold,
+          fontFeatures: [FontFeature.randomize()],
+          fontSize: 20,
+          color: Colors.grey.shade800,
+        ),
       ),
     );
   }
@@ -114,12 +130,14 @@ class Title extends StatelessWidget {
 
 class Greeting extends StatelessWidget {
   const Greeting({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final auth = Provider.of<Auth>(context);
+    final auth = Provider.of<Auth>(context, listen: false);
+    final firstName = auth.currentUser?.firstname ?? 'User';
+    
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: RichText(
@@ -127,11 +145,18 @@ class Greeting extends StatelessWidget {
         text: TextSpan(
           text: "Hello,\n",
           style: TextStyle(
-              color: Colors.white, fontSize: 29, fontWeight: FontWeight.w100),
+            color: Colors.white, 
+            fontSize: 29, 
+            fontWeight: FontWeight.w100,
+          ),
           children: [
             TextSpan(
-                text: auth.currentUser.firstname,
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 34)),
+              text: firstName,
+              style: TextStyle(
+                fontWeight: FontWeight.bold, 
+                fontSize: 34,
+              ),
+            ),
           ],
         ),
       ),
@@ -141,29 +166,37 @@ class Greeting extends StatelessWidget {
 
 class SearchField extends StatelessWidget {
   const SearchField({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 2,
+      elevation: 4,
+      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+      ),
       child: TextField(
         decoration: InputDecoration(
           border: OutlineInputBorder(
             borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(12),
           ),
-          hintText: "Search",
-          prefixIcon: Icon(FontAwesomeIcons.search),
+          hintText: "Search services, people, or cases...",
+          prefixIcon: Icon(
+            FontAwesomeIcons.search,
+            color: Theme.of(context).colorScheme.secondary,
+          ),
           hintStyle: TextStyle(
             color: Colors.grey.shade400,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w400,
+          ),
+          contentPadding: EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 12,
           ),
         ),
-      ),
-      //margin: EdgeInsets.all(),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
       ),
     );
   }

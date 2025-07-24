@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:simon/controllers/appointment_provider.dart';
 import 'package:simon/controllers/auth_provider.dart';
@@ -65,7 +65,7 @@ class _ProfileState extends State<Profile> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: ProfilePicture(
-                              borderColor: Theme.of(context).accentColor,
+                              borderColor: Theme.of(context).colorScheme.secondary,
                               size: 100,
                             ),
                           ),
@@ -85,21 +85,21 @@ class _ProfileState extends State<Profile> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                _buildTabButton(FlutterIcons.call_to_action_mdi,"Activity"),
+                                _buildTabButton(FontAwesomeIcons.chartLine,"Activity"),
                                 VerticalDivider(
-                                  color: Theme.of(context).accentColor,
+                                  color: Theme.of(context).colorScheme.secondary,
                                   width: 10,
                                   endIndent: 10,
                                   indent: 10,
                                 ),
-                               _buildTabButton(FlutterIcons.call_to_action_mdi,"Activity"),
+                               _buildTabButton(FontAwesomeIcons.chartLine,"Activity"),
                                 VerticalDivider(
-                                  color: Theme.of(context).accentColor,
+                                  color: Theme.of(context).colorScheme.secondary,
                                   width: 10,
                                   endIndent: 10,
                                   indent: 10,
                                 ),
-                                _buildTabButton(FlutterIcons.call_to_action_mdi,"Activity"),
+                                _buildTabButton(FontAwesomeIcons.chartLine,"Activity"),
                               ],
                             ),
                           ),
@@ -136,14 +136,14 @@ class _ProfileState extends State<Profile> {
       children: [
         Icon(
           data,
-          color: Theme.of(context).accentColor,
+          color: Theme.of(context).colorScheme.secondary,
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(
             label,
             style: TextStyle(
-              color: Theme.of(context).accentColor,
+              color: Theme.of(context).colorScheme.secondary,
             ),
           ),
         ),

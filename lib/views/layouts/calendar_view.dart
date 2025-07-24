@@ -30,7 +30,7 @@ class _CalendarViewState extends State<CalendarView> {
   Widget build(BuildContext context) {
     final appointments = Provider.of<AppointmentProvider>(context);
     final startDate = DateUtils.toMidnight(DateTime.now());
-    final Color accentColor = Theme.of(context).accentColor;
+    final Color accentColor = Theme.of(context).colorScheme.secondary;
 
     return SafeArea(
       child: Scaffold(
@@ -134,7 +134,7 @@ class _CalendarViewState extends State<CalendarView> {
   }
 
   Widget _buildChip(int time) {
-    final Color accentColor = Theme.of(context).accentColor;
+    final Color accentColor = Theme.of(context).colorScheme.secondary;
     return GestureDetector(
       onTap: () {
         setState(() {

@@ -119,7 +119,7 @@ class _SignUpState extends State<SignUp> {
               width: 70,
               child: Text(label,
                   textAlign: TextAlign.center,
-                  style: TextStyle(color: Theme.of(context).accentColor)),
+                  style: TextStyle(color: Theme.of(context).colorScheme.secondary)),
             ),
           )
       ],
@@ -132,7 +132,7 @@ class _SignUpState extends State<SignUp> {
   }
 
   Color iconColor(double index) {
-    if (currentPage == index) return Theme.of(context).accentColor;
+    if (currentPage == index) return Theme.of(context).colorScheme.secondary;
     return Colors.white;
   }
 
@@ -200,7 +200,7 @@ class _SignUpState extends State<SignUp> {
       children: [
         if (currentPage != 0.0)
           RaisedButton(
-            color: Theme.of(context).accentColor,
+            color: Theme.of(context).colorScheme.secondary,
             onPressed: previous,
             child: Container(
               width: 100,
@@ -212,7 +212,7 @@ class _SignUpState extends State<SignUp> {
           ),
         if (currentPage != 2.0)
           RaisedButton(
-            color: Theme.of(context).accentColor,
+            color: Theme.of(context).colorScheme.secondary,
             onPressed: next,
             child: Container(
               width: 100,
@@ -224,7 +224,7 @@ class _SignUpState extends State<SignUp> {
           ),
         if (currentPage == 2.0)
           RaisedButton(
-            color: Theme.of(context).accentColor,
+            color: Theme.of(context).colorScheme.secondary,
             onPressed: next,
             child: Container(
               width: 100,
